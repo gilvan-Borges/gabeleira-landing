@@ -30,8 +30,6 @@ Landing page cinematográfica e otimizada para conversão do salão especializad
 
 ✅ **Acessibilidade** – Contraste AA, botões de 48x48px, suporte a redução de movimento
 
-✅ **Rastreamento de Conversão** – Pronto para Google Analytics 4 e Meta Pixel
-
 ---
 
 ## 🛠️ Como Personalizar
@@ -138,36 +136,7 @@ https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20age
 
 ---
 
-### 7. **Rastreamento de Conversão**
-
-#### Google Analytics 4:
-
-1. Crie uma conta em [Google Analytics](https://analytics.google.com)
-2. Copie seu **Measurement ID** (formato: `G-XXXXXXXXXX`)
-3. No HTML, procure por `<!-- ===== GOOGLE ANALYTICS =====` e uncomment, substituindo o ID:
-
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-    gtag('config', 'G-XXXXXXXXXX');
-</script>
-```
-
-#### Meta Pixel (Facebook):
-
-1. Crie uma conta em [Meta Business](https://business.facebook.com)
-2. Copie seu **Pixel ID**
-3. No HTML, procure por `<!-- ===== META PIXEL =====` e uncomment, substituindo o ID:
-
-```html
-<script>
-    fbq('init', 'SEU_PIXEL_ID');
-</script>
-```
-
----
-
-### 8. **Open Graph (Redes Sociais)**
+### 7. **Open Graph (Redes Sociais)**
 
 Substitua a imagem padrão que aparece ao compartilhar:
 
@@ -232,7 +201,6 @@ git push origin main
 - [ ] Atualizar preços e descrições de serviços
 - [ ] Copiar 5 depoimentos reais do Google
 - [ ] Confirmar Instagram, WhatsApp e endereço
-- [ ] Configurar Google Analytics e Meta Pixel
 - [ ] Testar no celular (iOS e Android)
 - [ ] Testar links de WhatsApp
 - [ ] Testar acessibilidade com screen reader
