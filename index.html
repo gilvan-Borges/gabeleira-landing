@@ -526,11 +526,11 @@
         .compare.dragging .compare-media--after { transition: none; }
 
         .compare {
-            cursor: ew-resize;
-            touch-action: pan-y;
             user-select: none;
         }
 
+        /* A linha divisória é só visual; não intercepta toque, então rolar a página
+           funciona em qualquer ponto da foto. Só o círculo (grip) é arrastável. */
         .compare-handle {
             position: absolute;
             top: 0; bottom: 0;
@@ -547,7 +547,7 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 44px; height: 44px;
+            width: 48px; height: 48px;
             border-radius: 50%;
             background: rgba(255, 255, 255, .96);
             color: #0a0a0a;
@@ -555,6 +555,9 @@
             align-items: center;
             justify-content: center;
             gap: 1px;
+            cursor: ew-resize;
+            touch-action: none;
+            pointer-events: auto;
             box-shadow: 0 8px 22px rgba(0, 0, 0, .4);
         }
 
@@ -868,6 +871,24 @@
         <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5l7 7 7-7"/></symbol>
         <symbol id="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
         <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><circle cx="8.6" cy="10" r="1.5"/><path d="M20.2 15.8l-5-4.8-4 3.8-2.3-2-4.9 4"/></symbol>
+        <!-- Silhueta "antes": cabelo achatado e sem definição -->
+        <symbol id="icon-curls-before" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 34c0-8 4.5-12.2 11-12.2S31 26 31 34" fill="currentColor" fill-opacity=".18" stroke="none"/>
+            <circle cx="20" cy="14" r="8.4" fill="currentColor" fill-opacity=".22" stroke="none"/>
+            <path d="M9.5 12.5l3-4.2M12.8 9.6l2.3-4.6M30.5 12.5l-3-4.2M27.2 9.6l-2.3-4.6M16 6.8l1 -4.4M24 6.8l-1-4.4"/>
+        </symbol>
+        <!-- Silhueta "depois": cachos volumosos e definidos -->
+        <symbol id="icon-curls-after" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 34c0-8 4.5-12.2 11-12.2S31 26 31 34" fill="currentColor" fill-opacity=".18" stroke="none"/>
+            <g fill="currentColor" fill-opacity=".9" stroke="none">
+                <circle cx="12" cy="16" r="5.6"/>
+                <circle cx="20" cy="9" r="6.4"/>
+                <circle cx="28" cy="16" r="5.6"/>
+                <circle cx="9" cy="23" r="4.6"/>
+                <circle cx="31" cy="23" r="4.6"/>
+            </g>
+            <path d="M14 15a3 3 0 0 1 4-3M22 8a3 3 0 0 1 4-2M9 21a2.6 2.6 0 0 1 3-2.4" stroke="#0a0a0a" stroke-opacity=".25"/>
+        </symbol>
     </svg>
 
     <!-- ===== HERO ===== -->
@@ -980,11 +1001,11 @@
             <div class="gallery-container">
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
                         <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/11808293/pexels-photo-11808293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
                         <img class="photo-media" src="https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e hidratados (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
@@ -994,11 +1015,11 @@
 
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
                         <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
                         <img class="photo-media" src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e vibrantes (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
@@ -1008,11 +1029,11 @@
 
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
                         <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/14179888/pexels-photo-14179888.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
                         <img class="photo-media" src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos estilizados em atendimento (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
@@ -1365,10 +1386,13 @@
             }
             document.querySelectorAll('[data-split="words"]').forEach(splitWords);
 
-            // ===== Galeria antes/depois: arrastar com mouse ou dedo (funciona sem GSAP) =====
+            // ===== Galeria antes/depois: arrastar SÓ pela alça (funciona sem GSAP) =====
+            // O gesto só começa ao tocar/clicar no ícone da alça — o resto da foto
+            // continua rolando a página normalmente no celular.
             document.querySelectorAll('[data-compare]').forEach(compare => {
                 const after = compare.querySelector('.compare-media--after');
                 const handle = compare.querySelector('.compare-handle');
+                const grip = compare.querySelector('.compare-handle__grip');
                 let dragging = false;
 
                 function setPosition(percent) {
@@ -1398,10 +1422,11 @@
                     compare.classList.remove('dragging');
                 }
 
-                compare.addEventListener('mousedown', start);
+                const grabTarget = grip || handle;
+                grabTarget.addEventListener('mousedown', start);
                 window.addEventListener('mousemove', move);
                 window.addEventListener('mouseup', end);
-                compare.addEventListener('touchstart', start, { passive: false });
+                grabTarget.addEventListener('touchstart', start, { passive: false });
                 window.addEventListener('touchmove', move, { passive: true });
                 window.addEventListener('touchend', end);
 
