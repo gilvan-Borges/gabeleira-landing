@@ -539,7 +539,9 @@
         }
 
         .compare-media { position: absolute; inset: 0; }
+        .compare-media--before { z-index: 0; }
         .compare-media--after {
+            z-index: 1;
             clip-path: inset(0 0 0 50%); /* sem JS, mostra a metade direita do depois */
             transition: clip-path .6s cubic-bezier(.16, 1, .3, 1);
         }
