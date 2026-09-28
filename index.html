@@ -130,6 +130,17 @@
         .word { display: inline-block; overflow: hidden; vertical-align: top; }
         .word-inner { display: inline-block; will-change: transform, filter, opacity; }
 
+        /* ===== ÍCONES (SVG próprios, sem emoji) ===== */
+        .icon {
+            width: 1.1em;
+            height: 1.1em;
+            display: inline-block;
+            vertical-align: -0.15em;
+            flex-shrink: 0;
+        }
+        .icon-star-row { display: inline-flex; gap: .15em; color: var(--color-gold); }
+        .icon-star-row .icon { width: 1em; height: 1em; }
+
         /* ===== CONTAINER ===== */
         .container {
             width: 100%;
@@ -398,8 +409,6 @@
             border-radius: .5rem;
             font-size: .95rem;
         }
-
-        .stars { color: var(--color-gold); font-size: 1.1rem; letter-spacing: .1em; }
 
         .scroll-cue {
             position: absolute;
@@ -798,6 +807,24 @@
 </head>
 <body>
 
+    <!-- Ícones próprios (sem emoji), desenhados como SVG line-icons na mesma linguagem visual do site -->
+    <svg style="display:none" aria-hidden="true">
+        <symbol id="icon-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.7 6.3 6.8.6-5.2 4.5 1.6 6.7L12 16.9 6.1 20.6l1.6-6.7-5.2-4.5 6.8-.6L12 2.5z"/></symbol>
+        <symbol id="icon-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.9 6.6 6.6 1.9-6.6 1.9L12 19l-1.9-6.6L3.5 10.5l6.6-1.9L12 2z"/></symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c-4.9 0-8.8 3.5-8.8 7.8 0 2.3 1.1 4.4 2.9 5.9L5 21l4.2-1.7c.9.2 1.8.4 2.8.4 4.9 0 8.8-3.5 8.8-7.8s-3.9-8.7-8.8-8.7z"/></symbol>
+        <symbol id="icon-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.2" cy="6.5" r="2.6"/><circle cx="6.2" cy="17.5" r="2.6"/><line x1="20" y1="4" x2="8.5" y2="15.5"/><line x1="14.8" y1="14.8" x2="20" y2="20"/><line x1="8.5" y1="8.5" x2="11.8" y2="11.8"/></symbol>
+        <symbol id="icon-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s6.3 6.8 6.3 11a6.3 6.3 0 1 1-12.6 0c0-4.2 6.3-11 6.3-11z"/></symbol>
+        <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a8.8 8.8 0 1 0 0 17.6h1.6a2.3 2.3 0 0 0 0-4.6h-.5a1.9 1.9 0 1 1 0-3.8h3.6a2.1 2.1 0 0 0 2.1-2.1 8.8 8.8 0 0 0-6.8-7.1z"/><circle cx="8.3" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="11.8" cy="7.3" r="1" fill="currentColor" stroke="none"/><circle cx="15.6" cy="10" r="1" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s7.2-6.8 7.2-11.7a7.2 7.2 0 1 0-14.4 0c0 4.9 7.2 11.7 7.2 11.7z"/><circle cx="12" cy="9.8" r="2.6"/></symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.2V12l3.6 2"/></symbol>
+        <symbol id="icon-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.2l-2 4.8-4.8 2 2-4.8 4.8-2z"/></symbol>
+        <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5l-7 6.5 7 6.5"/></symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5.5l7 6.5-7 6.5"/></symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5l7 7 7-7"/></symbol>
+        <symbol id="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+        <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><circle cx="8.6" cy="10" r="1.5"/><path d="M20.2 15.8l-5-4.8-4 3.8-2.3-2-4.9 4"/></symbol>
+    </svg>
+
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais do salão/clientes assim que possível -->
@@ -811,7 +838,7 @@
         <div class="hero-scrim"></div>
 
         <div class="container hero-content" id="heroContent">
-            <div class="hero-badge">⭐ Especialista em Curvaturas Naturais</div>
+            <div class="hero-badge"><svg class="icon"><use href="#icon-star"></use></svg> Especialista em Curvaturas Naturais</div>
             <h1 class="hero-title">
                 <span class="line" data-split="words">Seus Cachos</span>
                 <span class="line" data-split="words">Merecem Respeito</span>
@@ -819,12 +846,12 @@
             <p class="hero-subtitle">Cortes, tratamentos e mechas que celebram a beleza natural da sua curvatura</p>
 
             <div class="hero-cta-group">
-                <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary">💬 Agendar pelo WhatsApp</a>
+                <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary"><svg class="icon"><use href="#icon-chat"></use></svg> Agendar pelo WhatsApp</a>
                 <a href="#services" class="btn btn-secondary">Ver Serviços</a>
             </div>
 
             <div class="rating-badge">
-                <span class="stars">★★★★★</span>
+                <span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span>
                 <span>5.0 no Google · 163 avaliações</span>
             </div>
         </div>
@@ -844,18 +871,18 @@
 
                 <div class="pain-points">
                     <div class="pain-point reveal">
-                        <p>❌ Cabeleireiros que não entendem a curvatura e fazem cortes retos demais</p>
+                        <p><svg class="icon" style="color:var(--color-pink);"><use href="#icon-cross"></use></svg> Cabeleireiros que não entendem a curvatura e fazem cortes retos demais</p>
                     </div>
                     <div class="pain-point reveal">
-                        <p>❌ Produtos inadequados que ressecam e frisam o cabelo</p>
+                        <p><svg class="icon" style="color:var(--color-pink);"><use href="#icon-cross"></use></svg> Produtos inadequados que ressecam e frisam o cabelo</p>
                     </div>
                     <div class="pain-point reveal">
-                        <p>❌ Falta de acolhimento e respeito pela sua textura natural</p>
+                        <p><svg class="icon" style="color:var(--color-pink);"><use href="#icon-cross"></use></svg> Falta de acolhimento e respeito pela sua textura natural</p>
                     </div>
                 </div>
 
                 <div class="solution-highlight reveal">
-                    <h3 style="margin-top: 0; color: var(--color-accent-light);">✨ Na Gabeleira é diferente</h3>
+                    <h3 style="margin-top: 0; color: var(--color-accent-light);"><svg class="icon"><use href="#icon-spark"></use></svg> Na Gabeleira é diferente</h3>
                     <p style="margin-bottom:0;">A Gab, a Leila e a Julia são especialistas em cabelos cacheados e crespos. Aqui, a gente respeita sua curvatura, escolhe os melhores produtos e faz cortes que realçam seu rosto e sua beleza natural. Cada cabelo é único — o seu também merece essa atenção.</p>
                 </div>
             </div>
@@ -871,7 +898,7 @@
             <div class="services-grid">
                 <!-- SUBSTITUIR: preços e descrições reais -->
                 <div class="service-card reveal">
-                    <div class="service-icon">✂️</div>
+                    <div class="service-icon"><svg class="icon" style="width:1em;height:1em;"><use href="#icon-scissors"></use></svg></div>
                     <div class="service-title">Corte para Cachos</div>
                     <div class="service-price">A partir de R$ 60</div>
                     <p class="service-description">Corte técnico que respeita a curvatura do seu cabelo. Incluindo curtos, médios e longos. Avaliamos o formato do seu rosto para o corte ideal.</p>
@@ -879,7 +906,7 @@
                 </div>
 
                 <div class="service-card reveal">
-                    <div class="service-icon">💆‍♀️</div>
+                    <div class="service-icon"><svg class="icon" style="width:1em;height:1em;"><use href="#icon-droplet"></use></svg></div>
                     <div class="service-title">Tratamento Capilar</div>
                     <div class="service-price">A partir de R$ 80</div>
                     <p class="service-description">Hidratação e nutrição profunda para cachos mais brilhantes, hidratados e definidinhos. Produtos de qualidade que respeitam a saúde do seu cabelo.</p>
@@ -887,7 +914,7 @@
                 </div>
 
                 <div class="service-card reveal">
-                    <div class="service-icon">🎨</div>
+                    <div class="service-icon"><svg class="icon" style="width:1em;height:1em;"><use href="#icon-palette"></use></svg></div>
                     <div class="service-title">Mechas</div>
                     <div class="service-price">A partir de R$ 120</div>
                     <p class="service-description">Mechas coloridas que combinam com seus cachos. Técnicas que não agridem a curvatura e mantêm a saúde do fio.</p>
@@ -994,7 +1021,7 @@
                         <div class="testimonial-avatar">M</div>
                         <div class="testimonial-info">
                             <h4>Maria Santos</h4>
-                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                            <div class="testimonial-rating"><span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span> 5.0</div>
                         </div>
                     </div>
                 </div>
@@ -1006,7 +1033,7 @@
                         <div class="testimonial-avatar">A</div>
                         <div class="testimonial-info">
                             <h4>Andreia Costa</h4>
-                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                            <div class="testimonial-rating"><span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span> 5.0</div>
                         </div>
                     </div>
                 </div>
@@ -1017,7 +1044,7 @@
                         <div class="testimonial-avatar">J</div>
                         <div class="testimonial-info">
                             <h4>Juliana Silva</h4>
-                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                            <div class="testimonial-rating"><span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span> 5.0</div>
                         </div>
                     </div>
                 </div>
@@ -1028,7 +1055,7 @@
                         <div class="testimonial-avatar">C</div>
                         <div class="testimonial-info">
                             <h4>Camila Oliveira</h4>
-                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                            <div class="testimonial-rating"><span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span> 5.0</div>
                         </div>
                     </div>
                 </div>
@@ -1039,14 +1066,14 @@
                         <div class="testimonial-avatar">F</div>
                         <div class="testimonial-info">
                             <h4>Fernanda Rocha</h4>
-                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                            <div class="testimonial-rating"><span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span> 5.0</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="carousel-controls">
-                    <button class="carousel-btn" id="prev-testimonial" aria-label="Depoimento anterior">❮</button>
-                    <button class="carousel-btn" id="next-testimonial" aria-label="Próximo depoimento">❯</button>
+                    <button class="carousel-btn" id="prev-testimonial" aria-label="Depoimento anterior"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+                    <button class="carousel-btn" id="next-testimonial" aria-label="Próximo depoimento"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
                 </div>
             </div>
         </div>
@@ -1090,7 +1117,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>Vocês alisam cabelo?</span>
-                        <span class="faq-icon">▼</span>
+                        <span class="faq-icon"><svg class="icon"><use href="#icon-chevron-down"></use></svg></span>
                     </button>
                     <div class="faq-answer">
                         <p>Não! Aqui a gente respeita e celebra a curvatura natural. A gente trabalha com cortes, tratamentos, mechas e técnicas que mantêm a saúde e a beleza natural dos seus cachos.</p>
@@ -1100,7 +1127,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>Preciso levar algum produto?</span>
-                        <span class="faq-icon">▼</span>
+                        <span class="faq-icon"><svg class="icon"><use href="#icon-chevron-down"></use></svg></span>
                     </button>
                     <div class="faq-answer">
                         <p>Não é necessário! A gente usa produtos de qualidade aqui no salão. Se quiser recomendações de produtos para usar em casa, a equipe passa tudo para você.</p>
@@ -1110,7 +1137,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>Quanto tempo leva um atendimento?</span>
-                        <span class="faq-icon">▼</span>
+                        <span class="faq-icon"><svg class="icon"><use href="#icon-chevron-down"></use></svg></span>
                     </button>
                     <div class="faq-answer">
                         <p>Depende do serviço: um corte geralmente leva 1 hora, tratamentos podem levar de 1h a 1h30. A gente não tem pressa — o seu cabelo merece atenção!</p>
@@ -1120,7 +1147,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>Vocês aceitam cartão e Pix?</span>
-                        <span class="faq-icon">▼</span>
+                        <span class="faq-icon"><svg class="icon"><use href="#icon-chevron-down"></use></svg></span>
                     </button>
                     <div class="faq-answer">
                         <p>Sim! Aceitamos cartão de crédito, débito e Pix. Confirme as opções de pagamento quando agendar pelo WhatsApp.</p>
@@ -1130,7 +1157,7 @@
                 <div class="faq-item">
                     <button class="faq-question">
                         <span>Qual o horário de funcionamento?</span>
-                        <span class="faq-icon">▼</span>
+                        <span class="faq-icon"><svg class="icon"><use href="#icon-chevron-down"></use></svg></span>
                     </button>
                     <div class="faq-answer">
                         <p>Terça a sábado, de 9h às 17h30. Fechamos domingo e segunda. Para agendar, é só chamar no WhatsApp!</p>
@@ -1153,7 +1180,7 @@
 
                 <div class="location-info reveal">
                     <div class="info-block">
-                        <div class="info-label">📍 Endereço</div>
+                        <div class="info-label"><svg class="icon"><use href="#icon-pin"></use></svg> Endereço</div>
                         <div class="info-content">
                             Av. Isabel, 29 – Comercial Canhoto, Loja 21<br>
                             Centro, Santa Cruz<br>
@@ -1162,21 +1189,21 @@
                     </div>
 
                     <div class="info-block">
-                        <div class="info-label">📞 Contato</div>
+                        <div class="info-label"><svg class="icon"><use href="#icon-chat"></use></svg> Contato</div>
                         <div class="info-content">
-                            <a href="https://wa.me/5521969715514">💬 (21) 96971-5514 – WhatsApp</a><br>
-                            <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer">📱 @gabeleira_ – Instagram</a>
+                            <a href="https://wa.me/5521969715514"><svg class="icon"><use href="#icon-chat"></use></svg> (21) 96971-5514 – WhatsApp</a><br>
+                            <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#icon-image"></use></svg> @gabeleira_ – Instagram</a>
                         </div>
                     </div>
 
                     <div class="business-hours">
-                        <div class="info-label" style="margin-bottom: 1rem;">🕐 Horário de Funcionamento</div>
+                        <div class="info-label" style="margin-bottom: 1rem;"><svg class="icon"><use href="#icon-clock"></use></svg> Horário de Funcionamento</div>
                         <div class="hours-item"><span>Terça a Sábado</span><strong>9h às 17h30</strong></div>
                         <div class="hours-item"><span>Domingo</span><strong style="color: var(--color-accent-light);">Fechado</strong></div>
                         <div class="hours-item"><span>Segunda</span><strong style="color: var(--color-accent-light);">Fechado</strong></div>
                     </div>
 
-                    <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">🗺️ Como Chegar</a>
+                    <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;"><svg class="icon"><use href="#icon-compass"></use></svg> Como Chegar</a>
                 </div>
             </div>
         </div>
@@ -1187,7 +1214,7 @@
         <div class="cta-final-content">
             <h2 class="cta-final-title" data-split="words">Pronta para Celebrar Seus Cachos?</h2>
             <p class="cta-final-text">Chama a gente no WhatsApp e marca seu horário. A Gab e a equipe estão prontas para te acolher!</p>
-            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary" style="font-size: 1.05rem; padding: 1.25rem 2.5rem;">💬 Agendar Agora</a>
+            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary" style="font-size: 1.05rem; padding: 1.25rem 2.5rem;"><svg class="icon"><use href="#icon-chat"></use></svg> Agendar Agora</a>
         </div>
     </section>
 
@@ -1195,19 +1222,19 @@
     <footer>
         <div class="footer-content">
             <div class="footer-contact">
-                <a href="https://wa.me/5521969715514" class="footer-link">💬 WhatsApp</a>
-                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="footer-link">📱 Instagram</a>
-                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="footer-link">📍 Google Maps</a>
+                <a href="https://wa.me/5521969715514" class="footer-link"><svg class="icon"><use href="#icon-chat"></use></svg> WhatsApp</a>
+                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="footer-link"><svg class="icon"><use href="#icon-image"></use></svg> Instagram</a>
+                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="footer-link"><svg class="icon"><use href="#icon-pin"></use></svg> Google Maps</a>
             </div>
 
             <div class="footer-social">
-                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram da Gabeleira">IG</a>
-                <a href="https://wa.me/5521969715514" class="social-link" aria-label="WhatsApp da Gabeleira">W</a>
-                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Maps da Gabeleira">G</a>
+                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram da Gabeleira"><svg class="icon"><use href="#icon-image"></use></svg></a>
+                <a href="https://wa.me/5521969715514" class="social-link" aria-label="WhatsApp da Gabeleira"><svg class="icon"><use href="#icon-chat"></use></svg></a>
+                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Maps da Gabeleira"><svg class="icon"><use href="#icon-pin"></use></svg></a>
             </div>
 
             <div class="footer-bottom">
-                <p>Gabeleira © 2024 — Especialista em Cachos em Santa Cruz, RJ<br>Desenvolvido com ❤️ para celebrar a beleza natural</p>
+                <p>Gabeleira © 2024 — Especialista em Cachos em Santa Cruz, RJ<br>Desenvolvido com carinho para celebrar a beleza natural</p>
             </div>
         </div>
     </footer>
@@ -1215,7 +1242,7 @@
     <!-- ===== FIXED CTA (MOBILE) ===== -->
     <div class="fixed-cta" id="fixed-cta">
         <div class="fixed-cta-content">
-            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary fixed-cta-btn">💬 Agendar pelo WhatsApp</a>
+            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary fixed-cta-btn"><svg class="icon"><use href="#icon-chat"></use></svg> Agendar pelo WhatsApp</a>
         </div>
     </div>
 
