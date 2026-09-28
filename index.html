@@ -225,12 +225,18 @@
             z-index: 1;
         }
 
-        /* Fotos reais (banco gratuito) usadas na equipe e na galeria */
+        /* Fotos reais (banco gratuito) usadas na equipe e na galeria.
+           Ficam sobrepostas a um .media-placeholder: se a foto falhar ao carregar
+           (link externo indisponível), o JS esconde a <img> e o gradiente aparece
+           no lugar, em vez do ícone de imagem quebrada do navegador. */
         .photo-media {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            z-index: 1;
         }
 
         .photo-media--before { filter: grayscale(1) contrast(.92) brightness(.85); }
@@ -305,7 +311,7 @@
             position: absolute;
             inset: 0;
             background-size: cover;
-            background-position: center;
+            background-position: center 22%; /* prioriza rosto/cabelo em telas altas e estreitas (mobile) */
             opacity: 0;
             filter: saturate(1.05) contrast(1.05);
             animation: heroSlideFade 20s ease-in-out infinite;
@@ -513,7 +519,46 @@
         }
 
         .compare-media { position: absolute; inset: 0; }
-        .compare-media--after { clip-path: inset(0 0 0 0); } /* estado padrão: visível sem JS */
+        .compare-media--after {
+            clip-path: inset(0 0 0 0); /* estado padrão: visível sem JS */
+            transition: clip-path .6s cubic-bezier(.16, 1, .3, 1);
+        }
+        .compare.dragging .compare-media--after { transition: none; }
+
+        .compare {
+            cursor: ew-resize;
+            touch-action: pan-y;
+            user-select: none;
+        }
+
+        .compare-handle {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 0%;
+            width: 3px;
+            background: rgba(255, 255, 255, .9);
+            transform: translateX(-50%);
+            z-index: 4;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, .3);
+            pointer-events: none;
+        }
+
+        .compare-handle__grip {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .96);
+            color: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, .4);
+        }
+
+        .compare-handle__grip .icon { width: .85em; height: .85em; }
 
         .compare-label {
             position: absolute;
@@ -829,10 +874,10 @@
     <section class="hero" id="hero">
         <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais do salão/clientes assim que possível -->
         <div class="hero-media" id="heroMedia" aria-hidden="true">
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/7476916/pexels-photo-7476916.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
             <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
             <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
             <div class="hero-media__tint"></div>
         </div>
         <div class="hero-scrim"></div>
@@ -929,41 +974,50 @@
         <div class="container">
             <span class="eyebrow">Resultados</span>
             <h2 data-split="words">Transformações</h2>
-            <p style="max-width:520px;">Role a página para revelar o "depois" de cada transformação. <!-- SUBSTITUIR: pelas fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) --></p>
+            <p style="max-width:520px;">Arraste o dedo ou o mouse sobre a foto para comparar antes e depois. <!-- SUBSTITUIR: pelas fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) --></p>
 
             <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) -->
             <div class="gallery-container">
-                <div class="compare reveal-compare">
+                <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/11808293/pexels-photo-11808293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/11808293/pexels-photo-11808293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <img class="photo-media" src="https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e hidratados (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e hidratados (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
+                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
 
-                <div class="compare reveal-compare">
+                <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <img class="photo-media" src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e vibrantes (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e vibrantes (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
+                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
 
-                <div class="compare reveal-compare">
+                <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/14179888/pexels-photo-14179888.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/14179888/pexels-photo-14179888.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
-                        <img class="photo-media" src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos estilizados em atendimento (foto ilustrativa)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;"><svg class="icon" style="width:2.5rem;height:2.5rem;opacity:.6;"><use href="#icon-image"></use></svg></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos estilizados em atendimento (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
+                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
             </div>
             <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Fotos ilustrativas de banco de imagens gratuito, usadas temporariamente neste MVP.</p>
@@ -980,7 +1034,8 @@
                 <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) pelas fotos reais da Gab, Leila e Julia assim que possível -->
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <img class="photo-media" src="https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><span class="media-placeholder__initial">G</span></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="team-name">Gab</div>
                     <div class="team-role">Fundadora &amp; Especialista</div>
@@ -989,7 +1044,8 @@
 
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <img class="photo-media" src="https://images.pexels.com/photos/20327630/pexels-photo-20327630.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Leila)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><span class="media-placeholder__initial">L</span></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/20327630/pexels-photo-20327630.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Leila)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="team-name">Leila</div>
                     <div class="team-role">Cabeleireira Especialista</div>
@@ -998,7 +1054,8 @@
 
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <img class="photo-media" src="https://images.pexels.com/photos/20348813/pexels-photo-20348813.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Julia)" loading="lazy">
+                        <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#8b2cff;"><span class="media-placeholder__initial">J</span></div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Julia)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="team-name">Julia</div>
                     <div class="team-role">Cabeleireira Especialista</div>
@@ -1308,6 +1365,63 @@
             }
             document.querySelectorAll('[data-split="words"]').forEach(splitWords);
 
+            // ===== Galeria antes/depois: arrastar com mouse ou dedo (funciona sem GSAP) =====
+            document.querySelectorAll('[data-compare]').forEach(compare => {
+                const after = compare.querySelector('.compare-media--after');
+                const handle = compare.querySelector('.compare-handle');
+                let dragging = false;
+
+                function setPosition(percent) {
+                    percent = Math.max(0, Math.min(100, percent));
+                    after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+                    if (handle) handle.style.left = percent + '%';
+                }
+
+                function percentFromEvent(e) {
+                    const rect = compare.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    return ((clientX - rect.left) / rect.width) * 100;
+                }
+
+                function start(e) {
+                    dragging = true;
+                    compare.classList.add('dragging');
+                    setPosition(percentFromEvent(e));
+                    e.preventDefault();
+                }
+                function move(e) {
+                    if (!dragging) return;
+                    setPosition(percentFromEvent(e));
+                }
+                function end() {
+                    dragging = false;
+                    compare.classList.remove('dragging');
+                }
+
+                compare.addEventListener('mousedown', start);
+                window.addEventListener('mousemove', move);
+                window.addEventListener('mouseup', end);
+                compare.addEventListener('touchstart', start, { passive: false });
+                window.addEventListener('touchmove', move, { passive: true });
+                window.addEventListener('touchend', end);
+
+                // Revela um pouco do "depois" automaticamente quando a foto entra na tela
+                if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+                    const revealObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                setPosition(65);
+                                revealObserver.unobserve(compare);
+                            }
+                        });
+                    }, { threshold: 0.4 });
+                    setPosition(0);
+                    revealObserver.observe(compare);
+                } else {
+                    setPosition(50);
+                }
+            });
+
             // ===== Sem GSAP ou com movimento reduzido: conteúdo já está visível (fallback seguro) =====
             const gsapReady = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
             if (prefersReducedMotion || !gsapReady) return;
@@ -1346,21 +1460,6 @@
                 gsap.to(el, {
                     opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
                     scrollTrigger: { trigger: el, start: 'top 88%' }
-                });
-            });
-
-            // ===== Galeria antes/depois: revelação por scroll (clip-path) =====
-            gsap.utils.toArray('.compare-media--after').forEach(after => {
-                gsap.set(after, { clipPath: 'inset(0 100% 0 0)' });
-                gsap.to(after, {
-                    clipPath: 'inset(0 0% 0 0)',
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: after.closest('.compare'),
-                        start: 'top 75%',
-                        end: 'top 25%',
-                        scrub: true
-                    }
                 });
             });
 
