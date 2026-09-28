@@ -214,6 +214,16 @@
             z-index: 1;
         }
 
+        /* Fotos reais (banco gratuito) usadas na equipe e na galeria */
+        .photo-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-media--before { filter: grayscale(1) contrast(.92) brightness(.85); }
+
         /* ===== BOTÕES ===== */
         .btn {
             display: inline-flex;
@@ -279,27 +289,50 @@
             will-change: transform;
         }
 
-        .hero-media__layer {
+        /* Carrossel de fotos de cachos no fundo do hero (crossfade automático, sem JS) */
+        .hero-media__slide {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: .55;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            filter: saturate(1.05) contrast(1.05);
+            animation: heroSlideFade 20s ease-in-out infinite;
         }
 
-        .hero-media__layer--back {
-            width: 70vmax; height: 70vmax; top: -15%; left: -10%;
-            background: radial-gradient(circle, var(--color-purple), transparent 70%);
+        .hero-media__slide:nth-child(1) { animation-delay: 0s; }
+        .hero-media__slide:nth-child(2) { animation-delay: 5s; }
+        .hero-media__slide:nth-child(3) { animation-delay: 10s; }
+        .hero-media__slide:nth-child(4) { animation-delay: 15s; }
+
+        @keyframes heroSlideFade {
+            0%   { opacity: 0; }
+            8%   { opacity: 1; }
+            25%  { opacity: 1; }
+            33%  { opacity: 0; }
+            100% { opacity: 0; }
         }
 
-        .hero-media__layer--mid {
-            width: 60vmax; height: 60vmax; bottom: -20%; right: -10%;
-            background: radial-gradient(circle, var(--color-pink), transparent 70%);
+        /* Camada de cor (mesma paleta do site) sobreposta às fotos, tipo "color grade" de cinema */
+        .hero-media__tint {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            background-size: 220% 220%;
+            opacity: .38;
+            mix-blend-mode: color;
+            animation: gradientShift 18s ease infinite;
         }
 
-        .hero-media__layer--front {
-            width: 45vmax; height: 45vmax; top: 30%; left: 30%;
-            background: radial-gradient(circle, var(--color-gold), transparent 70%);
-            opacity: .35;
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-media__slide { animation: none; opacity: 0; }
+            .hero-media__slide:first-child { opacity: 1; }
+            .hero-media__tint { animation: none; }
         }
 
         .hero-scrim {
@@ -511,8 +544,8 @@
             margin-bottom: 1.5rem;
         }
 
-        .team-image .media-placeholder { transition: transform var(--transition-smooth); }
-        .team-member:hover .media-placeholder { transform: scale(1.08); }
+        .team-image .photo-media { transition: transform var(--transition-smooth); }
+        .team-member:hover .photo-media { transform: scale(1.08); }
 
         .team-name { font-family: var(--font-display); font-size: 1.35rem; letter-spacing: .01em; margin-bottom: .35rem; color: var(--color-accent-light); text-transform: uppercase; }
         .team-role { font-size: .9rem; color: var(--color-text-secondary); margin-bottom: .75rem; }
@@ -767,10 +800,13 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
+        <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais do salão/clientes assim que possível -->
         <div class="hero-media" id="heroMedia" aria-hidden="true">
-            <div class="hero-media__layer hero-media__layer--back"></div>
-            <div class="hero-media__layer hero-media__layer--mid"></div>
-            <div class="hero-media__layer hero-media__layer--front"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/7476916/pexels-photo-7476916.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__tint"></div>
         </div>
         <div class="hero-scrim"></div>
 
@@ -868,40 +904,42 @@
             <h2 data-split="words">Transformações</h2>
             <p style="max-width:520px;">Role a página para revelar o "depois" de cada transformação. <!-- SUBSTITUIR: pelas fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) --></p>
 
+            <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) -->
             <div class="gallery-container">
                 <div class="compare reveal-compare">
-                    <div class="media-placeholder compare-media compare-media--before" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;">
-                        <span class="media-placeholder__icon">😔</span>
+                    <div class="compare-media compare-media--before">
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/11808293/pexels-photo-11808293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
                     </div>
-                    <div class="media-placeholder compare-media compare-media--after" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;">
-                        <span class="media-placeholder__icon">💇🏽‍♀️</span>
-                    </div>
-                    <div class="compare-label compare-label--before">Antes</div>
-                    <div class="compare-label compare-label--after">Depois</div>
-                </div>
-
-                <div class="compare reveal-compare">
-                    <div class="media-placeholder compare-media compare-media--before" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;">
-                        <span class="media-placeholder__icon">😕</span>
-                    </div>
-                    <div class="media-placeholder compare-media compare-media--after" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;">
-                        <span class="media-placeholder__icon">✨</span>
+                    <div class="compare-media compare-media--after">
+                        <img class="photo-media" src="https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e hidratados (foto ilustrativa)" loading="lazy">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
                 </div>
 
                 <div class="compare reveal-compare">
-                    <div class="media-placeholder compare-media compare-media--before" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;">
-                        <span class="media-placeholder__icon">😩</span>
+                    <div class="compare-media compare-media--before">
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
                     </div>
-                    <div class="media-placeholder compare-media compare-media--after" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;">
-                        <span class="media-placeholder__icon">💫</span>
+                    <div class="compare-media compare-media--after">
+                        <img class="photo-media" src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e vibrantes (foto ilustrativa)" loading="lazy">
+                    </div>
+                    <div class="compare-label compare-label--before">Antes</div>
+                    <div class="compare-label compare-label--after">Depois</div>
+                </div>
+
+                <div class="compare reveal-compare">
+                    <div class="compare-media compare-media--before">
+                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/14179888/pexels-photo-14179888.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy">
+                    </div>
+                    <div class="compare-media compare-media--after">
+                        <img class="photo-media" src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos estilizados em atendimento (foto ilustrativa)" loading="lazy">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
                 </div>
             </div>
+            <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Fotos ilustrativas de banco de imagens gratuito, usadas temporariamente neste MVP.</p>
         </div>
     </section>
 
@@ -912,12 +950,10 @@
             <h2 data-split="words">Conheça Nossa Equipe</h2>
 
             <div class="team-grid">
-                <!-- SUBSTITUIR: trocar .media-placeholder por <img src="foto-real.jpg" alt="..."> -->
+                <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) pelas fotos reais da Gab, Leila e Julia assim que possível -->
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;">
-                            <span class="media-placeholder__initial">G</span>
-                        </div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy">
                     </div>
                     <div class="team-name">Gab</div>
                     <div class="team-role">Fundadora &amp; Especialista</div>
@@ -926,9 +962,7 @@
 
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;">
-                            <span class="media-placeholder__initial">L</span>
-                        </div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/20327630/pexels-photo-20327630.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Leila)" loading="lazy">
                     </div>
                     <div class="team-name">Leila</div>
                     <div class="team-role">Cabeleireira Especialista</div>
@@ -937,9 +971,7 @@
 
                 <div class="team-member reveal">
                     <div class="team-image">
-                        <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#8b2cff;">
-                            <span class="media-placeholder__initial">J</span>
-                        </div>
+                        <img class="photo-media" src="https://images.pexels.com/photos/20348813/pexels-photo-20348813.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Julia)" loading="lazy">
                     </div>
                     <div class="team-name">Julia</div>
                     <div class="team-role">Cabeleireira Especialista</div>
