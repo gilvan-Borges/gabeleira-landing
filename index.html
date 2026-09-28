@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gabeleira - Especialista em cabelos cacheados e crespos em Santa Cruz, RJ. Cortes, tratamentos e mechas com foco na curvatura natural. 5.0 ★ no Google com 163 avaliações.">
+    <meta name="theme-color" content="#1a1a1a">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gabeleira | Especialista em Cachos em Santa Cruz – RJ">
+    <meta property="og:description" content="Salão especializado em cabelos cacheados e crespos. Cortes, tratamentos e mechas com respeito à curvatura natural.">
+    <meta property="og:type" content="business.business">
+    <meta property="og:url" content="https://gilvan-borges.github.io/minha-api/">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/ff6b35/ffffff?text=Gabeleira">
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "HairSalon",
+      "name": "Gabeleira – Especialista em Cachos",
+      "image": "https://via.placeholder.com/1200x630/ff6b35/ffffff?text=Gabeleira",
+      "description": "Salão especializado em cabelos cacheados e crespos em Santa Cruz, RJ",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Isabel, 29 – Comercial Canhoto, Loja 21",
+        "addressLocality": "Santa Cruz",
+        "addressRegion": "RJ",
+        "postalCode": "23510-151",
+        "addressCountry": "BR"
+      },
+      "telephone": "+5521969715514",
+      "url": "https://gilvan-borges.github.io/minha-api/",
+      "priceRange": "$$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "ratingCount": "163"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "17:30"
+        }
+      ]
+    }
+    </script>
+
+    <title>Gabeleira | Especialista em Cachos em Santa Cruz – RJ</title>
+
+    <style>
+        /* ===== RESET E VARIAVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-dark: #0a0a0a;
+            --color-dark-secondary: #1a1a1a;
+            --color-accent: #ff6b35;
+            --color-accent-light: #ff8c5a;
+            --color-gold: #ffd700;
+            --color-text: #ffffff;
+            --color-text-secondary: #d0d0d0;
+            --color-pink: #ff1493;
+            --color-purple: #8b00ff;
+            --color-orange: #ff8800;
+
+            --gradient-hero: linear-gradient(135deg, #ff1493 0%, #ff6b35 25%, #ffd700 50%, #8b00ff 75%, #ff1493 100%);
+            --gradient-section: linear-gradient(to bottom, rgba(26, 26, 26, 0.95), rgba(10, 10, 10, 1));
+
+            --transition-fast: 0.3s ease;
+            --transition-smooth: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: 1s cubic-bezier(0.33, 0.66, 0.66, 1);
+
+            --font-size-h1: clamp(2.5rem, 10vw, 5rem);
+            --font-size-h2: clamp(1.8rem, 6vw, 3.5rem);
+            --font-size-h3: clamp(1.3rem, 4vw, 2rem);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ===== TIPOGRAFIA ===== */
+        h1, h2, h3, h4 {
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-size: var(--font-size-h1);
+            text-transform: uppercase;
+            font-stretch: condensed;
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            width: 100%;
+            padding: clamp(4rem, 10vw, 8rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== GRADIENTE CINEMATOGRÁFICO ===== */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            background-size: 400% 400%;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body.animate .gradient-bg {
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* ===== GRANULAÇÃO FILME ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' fill='%23ffffff' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== BOTÕES ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-decoration: none;
+            white-space: nowrap;
+            min-height: 48px;
+            min-width: 48px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-hero);
+            background-size: 200% 200%;
+            color: var(--color-dark);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 48px rgba(255, 107, 53, 0.6);
+            background-position: 100% 0;
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-accent);
+            color: var(--color-dark);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15) 0%, rgba(255, 107, 53, 0.15) 25%, rgba(255, 215, 0, 0.1) 50%, rgba(139, 0, 255, 0.15) 75%, rgba(255, 20, 147, 0.15) 100%);
+            z-index: 0;
+            animation: heroGradientShift 20s ease infinite;
+        }
+
+        @keyframes heroGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-bg video,
+        .hero-bg img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid var(--color-accent);
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            animation: fadeInDown 0.8s ease 0.2s both;
+        }
+
+        .hero-title {
+            margin-bottom: 1rem;
+            animation: titleReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+            background: var(--gradient-hero);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+        }
+
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RATING ===== */
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .stars {
+            color: var(--color-gold);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== PAIN POINT ===== */
+        .pain-section {
+            background: var(--gradient-section);
+            position: relative;
+        }
+
+        .pain-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pain-title {
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
+
+        .pain-points {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .pain-point {
+            padding: 1.5rem;
+            background: rgba(255, 107, 53, 0.05);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0.25rem;
+            transition: var(--transition-fast);
+        }
+
+        .pain-point:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(8px);
+        }
+
+        .pain-point p {
+            margin: 0;
+        }
+
+        .solution-highlight {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 215, 0, 0.1));
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        /* ===== SERVIÇOS ===== */
+        .services-section {
+            background: var(--color-dark);
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            background: var(--color-dark-secondary);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            opacity: 0.1;
+            transition: left var(--transition-smooth);
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-8px);
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .service-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== GALERIA ANTES/DEPOIS ===== */
+        .gallery-section {
+            background: var(--gradient-section);
+        }
+
+        .gallery-container {
+            margin-bottom: 3rem;
+        }
+
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .before-after {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .before-after-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .before-img {
+            z-index: 1;
+        }
+
+        .after-img {
+            z-index: 0;
+        }
+
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--color-accent);
+            cursor: ew-resize;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
+        .before-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            z-index: 3;
+        }
+
+        .after-label {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            z-index: 3;
+        }
+
+        /* ===== EQUIPE ===== */
+        .team-section {
+            background: var(--color-dark);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background: var(--color-dark-secondary);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            mix-blend-mode: overlay;
+        }
+
+        .team-member:hover .team-image::after {
+            opacity: 0.3;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+
+        .team-role {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials-section {
+            background: var(--gradient-section);
+        }
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            background: var(--color-dark-secondary);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.5rem;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .testimonial-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+        }
+
+        .testimonial-rating {
+            color: var(--color-gold);
+            font-size: 0.9rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--color-accent);
+            background: transparent;
+            color: var(--color-accent);
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-accent);
+            color: var(--color-dark);
+        }
+
+        /* ===== COMO FUNCIONA ===== */
+        .process-section {
+            background: var(--color-dark);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            position: relative;
+            padding: 2rem;
+            background: var(--color-dark-secondary);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            background: var(--gradient-hero);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            background: var(--gradient-section);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background: var(--color-dark-secondary);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--color-dark-secondary);
+            transition: var(--transition-fast);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform var(--transition-fast);
+            color: var(--color-accent);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-smooth);
+            padding: 0 1.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* ===== LOCALIZAÇÃO ===== */
+        .location-section {
+            background: var(--color-dark);
+            position: relative;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-block {
+            margin-bottom: 2rem;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .info-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+
+        .info-content a:hover {
+            text-decoration: underline;
+        }
+
+        .business-hours {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final-section {
+            background: var(--gradient-hero);
+            background-size: 200% 200%;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-final-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--color-dark);
+        }
+
+        .cta-final-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--color-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-dark);
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .social-link:hover {
+            background: var(--color-accent);
+            color: var(--color-dark);
+        }
+
+        .footer-bottom {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        /* ===== FIXED FOOTER CTA (MOBILE) ===== */
+        .fixed-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 1rem;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform var(--transition-fast);
+        }
+
+        .fixed-cta.visible {
+            transform: translateY(0);
+        }
+
+        .fixed-cta-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .fixed-cta-btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding-bottom: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-size-h1: clamp(1.75rem, 8vw, 2.5rem);
+                --font-size-h2: clamp(1.3rem, 5vw, 2rem);
+                --font-size-h3: clamp(1.1rem, 3vw, 1.5rem);
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .rating-badge {
+                flex-direction: column;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- SUBSTITUIR: video src ou img src com foto/vídeo dos cachos -->
+            <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Cachos+Perfeitos" alt="Cachos perfeitos na Gabeleira" loading="lazy">
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">⭐ Especialista em Curvaturas Naturais</div>
+                <h1 class="hero-title">Seus Cachos<br>Merecem Respeito</h1>
+                <p class="hero-subtitle">Cortes, tratamentos e mechas que celebram a beleza natural da sua curvatura</p>
+
+                <div class="hero-cta-group">
+                    <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary" onclick="trackConversion('whatsapp_hero')">💬 Agendar pelo WhatsApp</a>
+                    <a href="#services" class="btn btn-secondary">Ver Serviços</a>
+                </div>
+
+                <div class="rating-badge">
+                    <span class="stars">★★★★★</span>
+                    <span>5.0 no Google · 163 avaliações</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DOR E SOLUÇÃO ===== -->
+    <section class="section pain-section">
+        <div class="container">
+            <div class="pain-container">
+                <h2 class="pain-title">Cansou de sair do salão sem reconhecer seu cabelo?</h2>
+
+                <div class="pain-points">
+                    <div class="pain-point">
+                        <p>❌ Cabeleireiros que não entendem a curvatura e fazem cortes retos demais</p>
+                    </div>
+                    <div class="pain-point">
+                        <p>❌ Produtos inadequados que ressecam e frisam o cabelo</p>
+                    </div>
+                    <div class="pain-point">
+                        <p>❌ Falta de acolhimento e respeito pela sua textura natural</p>
+                    </div>
+                </div>
+
+                <div class="solution-highlight">
+                    <h3 style="margin-top: 0; color: var(--color-accent);">✨ Na Gabeleira é diferente</h3>
+                    <p>A Gab, a Leila e a Julia são especialistas em cabelos cacheados e crespos. Aqui, a gente respeita sua curvatura, escolhe os melhores produtos e faz cortes que realçam seu rosto e sua beleza natural. Cada cabelo é único — o seu também merece essa atenção.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+
+            <div class="services-grid">
+                <!-- SUBSTITUIR: preços e descrições reais -->
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <div class="service-title">Corte para Cachos</div>
+                    <div class="service-price">A partir de R$ 60</div>
+                    <p class="service-description">Corte técnico que respeita a curvatura do seu cabelo. Incluindo curtos, médios e longos. Avaliamos o formato do seu rosto para o corte ideal.</p>
+                    <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20corte%20para%20cachos" class="btn btn-primary" style="width: 100%;" onclick="trackConversion('whatsapp_corte')">Agendar</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💆‍♀️</div>
+                    <div class="service-title">Tratamento Capilar</div>
+                    <div class="service-price">A partir de R$ 80</div>
+                    <p class="service-description">Hidratação e nutrição profunda para cachos mais brilhantes, hidratados e definidinhos. Produtos de qualidade que respeitam a saúde do seu cabelo.</p>
+                    <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20tratamento" class="btn btn-primary" style="width: 100%;" onclick="trackConversion('whatsapp_tratamento')">Agendar</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <div class="service-title">Mechas</div>
+                    <div class="service-price">A partir de R$ 120</div>
+                    <p class="service-description">Mechas coloridas que combinam com seus cachos. Técnicas que não agridem a curvatura e mantêm a saúde do fio.</p>
+                    <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20consultar%20sobre%20mechas" class="btn btn-primary" style="width: 100%;" onclick="trackConversion('whatsapp_mechas')">Agendar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERIA ANTES/DEPOIS ===== -->
+    <section class="section gallery-section">
+        <div class="container">
+            <h2>Transformações</h2>
+
+            <div class="gallery-container">
+                <!-- SUBSTITUIR: fotos reais antes/depois do Instagram da Gabeleira -->
+                <div class="before-after-container">
+                    <div class="before-after">
+                        <img src="https://via.placeholder.com/600x600/2a2a2a/ff6b35?text=ANTES" alt="Antes do tratamento" class="before-after-img before-img" loading="lazy">
+                        <img src="https://via.placeholder.com/600x600/ff6b35/1a1a1a?text=DEPOIS" alt="Depois do tratamento" class="before-after-img after-img" loading="lazy">
+                        <div class="before-after-slider" id="slider-1"></div>
+                        <div class="before-label">ANTES</div>
+                        <div class="after-label">DEPOIS</div>
+                    </div>
+                </div>
+
+                <div class="before-after-container">
+                    <div class="before-after">
+                        <img src="https://via.placeholder.com/600x600/2a2a2a/ff6b35?text=ANTES" alt="Antes do corte" class="before-after-img before-img" loading="lazy">
+                        <img src="https://via.placeholder.com/600x600/ff6b35/1a1a1a?text=DEPOIS" alt="Depois do corte" class="before-after-img after-img" loading="lazy">
+                        <div class="before-after-slider" id="slider-2"></div>
+                        <div class="before-label">ANTES</div>
+                        <div class="after-label">DEPOIS</div>
+                    </div>
+                </div>
+
+                <div class="before-after-container">
+                    <div class="before-after">
+                        <img src="https://via.placeholder.com/600x600/2a2a2a/ff6b35?text=ANTES" alt="Antes da transformação" class="before-after-img before-img" loading="lazy">
+                        <img src="https://via.placeholder.com/600x600/ff6b35/1a1a1a?text=DEPOIS" alt="Depois da transformação" class="before-after-img after-img" loading="lazy">
+                        <div class="before-after-slider" id="slider-3"></div>
+                        <div class="before-label">ANTES</div>
+                        <div class="after-label">DEPOIS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPE ===== -->
+    <section class="section team-section">
+        <div class="container">
+            <h2>Conheça Nossa Equipe</h2>
+
+            <div class="team-grid">
+                <!-- SUBSTITUIR: fotos reais da Gab, Leila e Julia -->
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/400x400/ff6b35/1a1a1a?text=Gab" alt="Gab - Especialista em Cachos" loading="lazy">
+                    </div>
+                    <div class="team-name">Gab</div>
+                    <div class="team-role">Fundadora & Especialista</div>
+                    <div class="team-bio">Especialista em curvaturas com anos de experiência. A Gab é apaixonada por cachos e dedica atenção especial a cada cliente.</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/400x400/ff6b35/1a1a1a?text=Leila" alt="Leila - Cabeleireira" loading="lazy">
+                    </div>
+                    <div class="team-name">Leila</div>
+                    <div class="team-role">Cabeleireira Especialista</div>
+                    <div class="team-bio">Com dedicação ao detalhe, a Leila cria cortes e tratamentos personalizados para cada curvatura. Seu toque é acolhedor e profissional.</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://via.placeholder.com/400x400/ff6b35/1a1a1a?text=Julia" alt="Julia - Cabeleireira" loading="lazy">
+                    </div>
+                    <div class="team-name">Julia</div>
+                    <div class="team-role">Cabeleireira Especialista</div>
+                    <div class="team-bio">Julia traz criatividade e cuidado em cada atendimento. Especializada em mechas e transformações que respeitam a saúde do cabelo.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="section testimonials-section">
+        <div class="container">
+            <h2>Histórias de Nossas Clientes</h2>
+
+            <div class="testimonials-carousel">
+                <div class="testimonial-card" id="testimonial-0" style="display: block;">
+                    <p class="testimonial-text">"Finalmente encontrei um salão que respeita meus cachos! A Gab me fez entender o que meu cabelo realmente precisa. Saí apaixonada pelos meus fios!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <h4>Maria Santos</h4>
+                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBSTITUIR: com depoimentos reais do Google da Gabeleira -->
+                <div class="testimonial-card" id="testimonial-1" style="display: none;">
+                    <p class="testimonial-text">"O corte ficou maravilhoso. Elas entendem mesmo de cabelo cacheado. Voltarei com certeza!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Andreia Costa</h4>
+                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" id="testimonial-2" style="display: none;">
+                    <p class="testimonial-text">"Que lugar incrível! Acolhimento impecável, profissionais competentes e meu cabelo saiu lindo. Recomendo muito!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <h4>Juliana Silva</h4>
+                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" id="testimonial-3" style="display: none;">
+                    <p class="testimonial-text">"O tratamento que fiz deixou meu cabelo tão hidratado! Elas realmente sabem como cuidar de cachos. Voltarei!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">C</div>
+                        <div class="testimonial-info">
+                            <h4>Camila Oliveira</h4>
+                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" id="testimonial-4" style="display: none;">
+                    <p class="testimonial-text">"Encontrei meu salão de confiança! A Gab e a equipe são incríveis. Meus cachos nunca ficaram tão bem!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">F</div>
+                        <div class="testimonial-info">
+                            <h4>Fernanda Rocha</h4>
+                            <div class="testimonial-rating">★★★★★ 5.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prev-testimonial" aria-label="Depoimento anterior">❮</button>
+                    <button class="carousel-btn" id="next-testimonial" aria-label="Próximo depoimento">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMO FUNCIONA ===== -->
+    <section class="section process-section">
+        <div class="container">
+            <h2>Como Funciona</h2>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Chama no WhatsApp</div>
+                    <div class="step-description">Envie uma mensagem para (21) 96971-5514 e avise qual serviço você quer. A Gab ou a equipe responde rapidinho!</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Avaliação do Cabelo</div>
+                    <div class="step-description">Quando você chega, a gente avalia a curvatura, a saúde dos fios e o formato do seu rosto para escolher o melhor corte.</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Saia Apaixonada</div>
+                    <div class="step-description">Você sai com seus cachos celebrados, bem cuidados e com você mesma. E quer voltar sempre!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq-section">
+        <div class="container">
+            <div class="faq-container">
+                <h2>Perguntas Frequentes</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Vocês alisam cabelo?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! Aqui a gente respeita e celebra a curvatura natural. A gente trabalha com cortes, tratamentos, mechas e técnicas que mantêm a saúde e a beleza natural dos seus cachos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Preciso levar algum produto?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não é necessário! A gente usa produtos de qualidade aqui no salão. Se quiser recomendações de produtos para usar em casa, a equipe passa tudo para você.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quanto tempo leva um atendimento?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Depende do serviço: um corte geralmente leva 1 hora, tratamentos podem levar de 1h a 1h30. A gente não tem pressa — o seu cabelo merece atenção!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Vocês aceitam cartão e Pix?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Aceitamos cartão de crédito, débito e Pix. Confirme as opções de pagamento quando agendar pelo WhatsApp.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Qual o horário de funcionamento?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Terça a sábado, de 9h às 17h30. Fechamos domingo e segunda. Para agendar, é só chamar no WhatsApp!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LOCALIZAÇÃO ===== -->
+    <section class="section location-section">
+        <div class="container">
+            <h2>Onde Nos Encontrar</h2>
+
+            <div class="location-grid">
+                <div class="map-container">
+                    <!-- MAPA DO GOOGLE MAPS INTEGRADO -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14730.849365396487!2d-43.69537!3d-22.888156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9be8c0a0a0a0a0a1%3A0xed2c0c0c0c0c0c0c!2sAv.%20Isabel%2C%2029%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="location-info">
+                    <div class="info-block">
+                        <div class="info-label">📍 Endereço</div>
+                        <div class="info-content">
+                            Av. Isabel, 29 – Comercial Canhoto, Loja 21<br>
+                            Centro, Santa Cruz<br>
+                            Rio de Janeiro – RJ, CEP 23510-151
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-label">📞 Contato</div>
+                        <div class="info-content">
+                            <a href="https://wa.me/5521969715514" onclick="trackConversion('whatsapp_location')">💬 (21) 96971-5514 – WhatsApp</a><br>
+                            <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer">📱 @gabeleira_ – Instagram</a>
+                        </div>
+                    </div>
+
+                    <div class="business-hours">
+                        <div class="info-label" style="margin-bottom: 1rem;">🕐 Horário de Funcionamento</div>
+                        <div class="hours-item">
+                            <span>Terça a Sábado</span>
+                            <strong>9h às 17h30</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Domingo</span>
+                            <strong style="color: var(--color-accent);">Fechado</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Segunda</span>
+                            <strong style="color: var(--color-accent);">Fechado</strong>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">🗺️ Como Chegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-final-section">
+        <div class="cta-final-content">
+            <h2 class="cta-final-title">Pronta para Celebrar Seus Cachos?</h2>
+            <p class="cta-final-text">Chama a gente no WhatsApp e marca seu horário. A Gab e a equipe estão prontas para te acolher!</p>
+            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;" onclick="trackConversion('whatsapp_final')">💬 Agendar Agora</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-contact">
+                <a href="https://wa.me/5521969715514" class="footer-link" onclick="trackConversion('whatsapp_footer')">
+                    💬 WhatsApp
+                </a>
+                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    📱 Instagram
+                </a>
+                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    📍 Google Maps
+                </a>
+            </div>
+
+            <div class="footer-social">
+                <a href="https://www.instagram.com/gabeleira_/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram da Gabeleira">f</a>
+                <a href="https://wa.me/5521969715514" class="social-link" aria-label="WhatsApp da Gabeleira" onclick="trackConversion('social_whatsapp')">W</a>
+                <a href="https://maps.google.com/?cid=17106895316787300898" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Google Maps da Gabeleira">G</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Gabeleira © 2024 — Especialista em Cachos em Santa Cruz, RJ<br>
+                Desenvolvido com ❤️ para celebrar a beleza natural</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FIXED CTA (MOBILE) ===== -->
+    <div class="fixed-cta" id="fixed-cta">
+        <div class="fixed-cta-content">
+            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary fixed-cta-btn" onclick="trackConversion('whatsapp_fixed')">💬 Agendar pelo WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIGURAÇÃO GOOGLE ANALYTICS / META PIXEL =====
+        function trackConversion(eventName) {
+            // Google Analytics 4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, {
+                    'event_category': 'conversion',
+                    'event_label': 'whatsapp_click'
+                });
+            }
+
+            // Meta Pixel (Facebook)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact', {
+                    content_name: eventName
+                });
+            }
+
+            // Console log para debug (remover em produção)
+            console.log('Conversão rastreada:', eventName);
+        }
+
+        // ===== FIXED CTA VISIBILITY =====
+        const fixedCta = document.getElementById('fixed-cta');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            if (scrollPosition > heroBottom && window.innerWidth <= 768) {
+                fixedCta.classList.add('visible');
+            } else {
+                fixedCta.classList.remove('visible');
+            }
+        });
+
+        // ===== BEFORE/AFTER SLIDER =====
+        function initBeforeAfterSlider(sliderId) {
+            const slider = document.getElementById(sliderId);
+            const beforeAfterContainer = slider.closest('.before-after');
+            const beforeImg = beforeAfterContainer.querySelector('.before-img');
+
+            let isSliding = false;
+
+            function updateSlider(e) {
+                if (!isSliding && e.type !== 'touchstart' && e.type !== 'touchmove') return;
+
+                const rect = beforeAfterContainer.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+
+                // Para touch
+                if (e.touches) {
+                    x = e.touches[0].clientX - rect.left;
+                }
+
+                // Limitar entre 0 e largura do container
+                x = Math.max(0, Math.min(x, rect.width));
+
+                const percentage = (x / rect.width) * 100;
+                slider.style.left = percentage + '%';
+                beforeImg.style.width = percentage + '%';
+            }
+
+            slider.addEventListener('mousedown', () => { isSliding = true; });
+            document.addEventListener('mouseup', () => { isSliding = false; });
+            document.addEventListener('mousemove', updateSlider);
+
+            // Touch
+            slider.addEventListener('touchstart', () => { isSliding = true; });
+            document.addEventListener('touchend', () => { isSliding = false; });
+            document.addEventListener('touchmove', updateSlider);
+
+            // Click no container
+            beforeAfterContainer.addEventListener('click', updateSlider);
+        }
+
+        // Inicializar sliders
+        initBeforeAfterSlider('slider-1');
+        initBeforeAfterSlider('slider-2');
+        initBeforeAfterSlider('slider-3');
+
+        // ===== CARROSSEL DEPOIMENTOS =====
+        let currentTestimonial = 0;
+        const totalTestimonials = 5;
+
+        function showTestimonial(index) {
+            for (let i = 0; i < totalTestimonials; i++) {
+                const card = document.getElementById(`testimonial-${i}`);
+                card.style.display = i === index ? 'flex' : 'none';
+            }
+        }
+
+        document.getElementById('next-testimonial').addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        });
+
+        document.getElementById('prev-testimonial').addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        });
+
+        // Auto-rotate testimonials a cada 8 segundos
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        }, 8000);
+
+        // ===== FAQ ACCORDION =====
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                // Fechar outros itens
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle item atual
+                item.classList.toggle('active');
+            });
+        });
+
+        // ===== ANIMAÇÕES DE SCROLL (SIMPLES) =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos
+        document.querySelectorAll('.service-card, .team-member, .process-step, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // ===== ATIVAR ANIMAÇÕES =====
+        document.body.classList.add('animate');
+
+        // ===== SEO & PERFORMANCE =====
+        // Lazy loading automático para imagens
+        if ('IntersectionObserver' in window) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.loading = 'eager';
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Prefetch WhatsApp links para performance
+        const links = document.querySelectorAll('a[href*="wa.me"]');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const prefetchLink = document.createElement('link');
+                prefetchLink.rel = 'prefetch';
+                prefetchLink.href = link.href;
+                document.head.appendChild(prefetchLink);
+            }, { once: true });
+        });
+    </script>
+
+    <!-- ===== GOOGLE ANALYTICS =====
+    SUBSTITUIR: UA-XXXXXXXXX-X com seu ID do Google Analytics 4
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXXXXXX-X');
+    </script>
+    -->
+
+    <!-- ===== META PIXEL =====
+    SUBSTITUIR: 000000000000000 com seu Pixel ID
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '000000000000000');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" /></noscript>
+    -->
+</body>
+</html>
