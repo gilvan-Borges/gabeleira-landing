@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gabeleira - Especialista em cabelos cacheados e crespos em Santa Cruz, RJ. Cortes, tratamentos e mechas com foco na curvatura natural. 5.0 ★ no Google com 163 avaliações.">
     <meta name="theme-color" content="#030303">
+    <link rel="preload" as="image" href="assets/img/team-curls.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/team-curls-small.webp" media="(max-width: 768px)" fetchpriority="high">
+
+    <!-- Google tag (gtag.js) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DEFRP73X2F');
+
+        window.addEventListener('load', () => {
+            const script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-DEFRP73X2F';
+            script.async = true;
+            document.head.appendChild(script);
+        }, { once: true });
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:title" content="Gabeleira | Especialista em Cachos em Santa Cruz – RJ">
@@ -53,7 +70,8 @@
     <!-- Fontes: Anton (display/poster) + Inter (texto) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
     <style>
         /* ===== RESET E VARIAVEIS ===== */
@@ -310,23 +328,21 @@
         .hero-media__slide {
             position: absolute;
             inset: 0;
+            background-image: url('assets/img/team-curls.webp');
             background-size: cover;
             background-position: center 22%; /* prioriza rosto/cabelo em telas altas e estreitas (mobile) */
             opacity: 0;
             filter: saturate(1.05) contrast(1.05);
-            animation: heroSlideFade 20s ease-in-out infinite;
+            animation: heroSlideFade 18s ease-in-out infinite;
         }
 
         .hero-media__slide:nth-child(1) { animation-delay: 0s; }
-        .hero-media__slide:nth-child(2) { animation-delay: 6.67s; }
-        .hero-media__slide:nth-child(3) { animation-delay: 13.33s; }
+        .hero-media__slide:nth-child(2) { animation-delay: 6s; }
+        .hero-media__slide:nth-child(3) { animation-delay: 12s; }
 
         @keyframes heroSlideFade {
-            0%   { opacity: 0; }
-            8%   { opacity: 1; }
-            25%  { opacity: 1; }
-            33%  { opacity: 0; }
-            100% { opacity: 0; }
+            0%, 23% { opacity: 1; }
+            33%, 100% { opacity: 0; }
         }
 
         /* Camada de cor (mesma paleta do site) sobreposta às fotos, tipo "color grade" de cinema */
@@ -364,6 +380,7 @@
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
+            padding-bottom: 5.5rem;
         }
 
         .hero-badge {
@@ -382,6 +399,9 @@
         .hero-title { margin-bottom: 1.25rem; }
         .hero-title .line { display: block; }
         .hero-title .line + .line {
+            color: var(--color-accent-light);
+        }
+        .hero-title .line + .line .word-inner {
             background: var(--gradient-hero);
             background-size: 220% 220%;
             background-clip: text;
@@ -409,10 +429,11 @@
             align-items: center;
             gap: .75rem;
             padding: 1rem 1.5rem;
-            background: rgba(255, 215, 0, .08);
+            background: rgba(3, 3, 3, .78);
             border: 1px solid rgba(255, 215, 0, .3);
             border-radius: .5rem;
             font-size: .95rem;
+            backdrop-filter: blur(8px);
         }
 
         .scroll-cue {
@@ -420,7 +441,7 @@
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
+            z-index: 1;
             font-size: .75rem;
             letter-spacing: .2em;
             text-transform: uppercase;
@@ -836,6 +857,9 @@
             .services-grid, .team-grid, .process-steps { grid-template-columns: 1fr; }
             body { padding-bottom: 70px; }
             .hero-media__layer { filter: blur(40px); }
+            .hero-content { padding-bottom: 0; }
+            .scroll-cue { display: none; }
+            .hero-media__slide { background-image: url('assets/img/team-curls-small.webp'); }
         }
 
         @media (max-width: 480px) {
@@ -847,8 +871,8 @@
             .section { padding: 3rem 0; }
             .container { padding: 0 1rem; }
             .hero-badge { font-size: .7rem; padding: .5rem 1rem; }
+            .hero-title .line + .line { font-size: clamp(1.75rem, 8vw, 2rem); }
             .rating-badge { flex-direction: column; font-size: .85rem; }
-            .scroll-cue { display: none; }
         }
     </style>
 </head>
@@ -892,12 +916,11 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <!-- Fotos hospedadas no próprio repositório (assets/img/) — carregam sempre, sem depender de link externo.
-             SUBSTITUIR: pelas fotos reais do salão/clientes assim que possível -->
+        <!-- A primeira foto é priorizada; as demais entram após o carregamento inicial. -->
         <div class="hero-media" id="heroMedia" aria-hidden="true">
-            <div class="hero-media__slide" style="background-image:url('assets/img/team-curls.jpg')"></div>
-            <div class="hero-media__slide" style="background-image:url('assets/img/salon-interior-1.jpg')"></div>
-            <div class="hero-media__slide" style="background-image:url('assets/img/salon-interior-2.jpg')"></div>
+            <div class="hero-media__slide"></div>
+            <div class="hero-media__slide" data-background-image="assets/img/salon-interior-1.webp" data-background-image-mobile="assets/img/salon-interior-1-small.webp"></div>
+            <div class="hero-media__slide" data-background-image="assets/img/salon-interior-2.webp" data-background-image-mobile="assets/img/salon-interior-2-small.webp"></div>
             <div class="hero-media__tint"></div>
         </div>
         <div class="hero-scrim"></div>
@@ -994,16 +1017,17 @@
         <div class="container">
             <span class="eyebrow">Resultados</span>
             <h2 data-split="words">Transformações</h2>
-            <p style="max-width:520px;">Arraste o dedo ou o mouse sobre a foto para comparar antes e depois. <!-- SUBSTITUIR: pelas fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) --></p>
+            <p style="max-width:520px;">Arraste o controle para comparar cada par de fotos do antes e depois.</p>
 
-            <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais antes/depois do Instagram da Gabeleira (com autorização das clientes) -->
             <div class="gallery-container">
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
+                        <img class="photo-media" src="assets/img/ante1.webp" srcset="assets/img/ante1-mobile.webp 380w, assets/img/ante1-small.webp 760w, assets/img/ante1.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo antes da transformação 1" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
+                        <img class="photo-media" src="assets/img/depois1.webp" srcset="assets/img/depois1-mobile.webp 380w, assets/img/depois1-small.webp 760w, assets/img/depois1.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo depois da transformação 1" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
@@ -1013,9 +1037,11 @@
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
+                        <img class="photo-media" src="assets/img/antes2.webp" srcset="assets/img/antes2-mobile.webp 380w, assets/img/antes2-small.webp 760w, assets/img/antes2.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo antes da transformação 2" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
+                        <img class="photo-media" src="assets/img/depois2.webp" srcset="assets/img/depois2-mobile.webp 380w, assets/img/depois2-small.webp 760w, assets/img/depois2.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo depois da transformação 2" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
@@ -1025,16 +1051,18 @@
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
+                        <img class="photo-media" src="assets/img/antes3.webp" srcset="assets/img/antes3-mobile.webp 380w, assets/img/antes3-small.webp 760w, assets/img/antes3.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo antes da transformação 3" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
+                        <img class="photo-media" src="assets/img/depois3.webp" srcset="assets/img/depois3-mobile.webp 380w, assets/img/depois3-small.webp 760w, assets/img/depois3.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 620px" alt="Cabelo depois da transformação 3" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
                     <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
             </div>
-            <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Ilustração temporária neste MVP — entra no lugar assim que tivermos fotos reais de antes/depois autorizadas pelas clientes.</p>
+            <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Publique fotos de clientes somente com autorização de uso de imagem.</p>
         </div>
     </section>
 
@@ -1049,7 +1077,7 @@
                 <div class="team-member reveal">
                     <div class="team-image">
                         <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><span class="media-placeholder__initial">G</span></div>
-                        <img class="photo-media" src="assets/img/team-curls.jpg" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy" onerror="this.style.display='none'">
+                        <img class="photo-media" src="assets/img/team-curls.webp" srcset="assets/img/team-curls-small.webp 760w, assets/img/team-curls.webp 1200w" sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 380px" alt="Foto ilustrativa de cabelos cacheados" loading="lazy" decoding="async" onerror="this.style.display='none'">
                     </div>
                     <div class="team-name">Gab</div>
                     <div class="team-role">Fundadora &amp; Especialista</div>
@@ -1326,6 +1354,26 @@
     <script defer>
         window.addEventListener('DOMContentLoaded', () => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion) {
+                window.addEventListener('load', () => {
+                    const loadSecondaryHeroSlides = () => {
+                        const mobile = window.matchMedia('(max-width: 768px)').matches;
+                        document.querySelectorAll('.hero-media__slide[data-background-image]').forEach(slide => {
+                            const image = mobile ? slide.dataset.backgroundImageMobile : slide.dataset.backgroundImage;
+                            slide.style.backgroundImage = `url("${image}")`;
+                            slide.removeAttribute('data-background-image');
+                            slide.removeAttribute('data-background-image-mobile');
+                        });
+                    };
+
+                    if ('requestIdleCallback' in window) {
+                        window.requestIdleCallback(loadSecondaryHeroSlides, { timeout: 2000 });
+                    } else {
+                        setTimeout(loadSecondaryHeroSlides, 0);
+                    }
+                }, { once: true });
+            }
 
             // ===== FIXED CTA VISIBILITY =====
             const fixedCta = document.getElementById('fixed-cta');
