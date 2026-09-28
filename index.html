@@ -318,9 +318,8 @@
         }
 
         .hero-media__slide:nth-child(1) { animation-delay: 0s; }
-        .hero-media__slide:nth-child(2) { animation-delay: 5s; }
-        .hero-media__slide:nth-child(3) { animation-delay: 10s; }
-        .hero-media__slide:nth-child(4) { animation-delay: 15s; }
+        .hero-media__slide:nth-child(2) { animation-delay: 6.67s; }
+        .hero-media__slide:nth-child(3) { animation-delay: 13.33s; }
 
         @keyframes heroSlideFade {
             0%   { opacity: 0; }
@@ -893,12 +892,12 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <!-- SUBSTITUIR: fotos de banco de imagens (Pexels, uso livre) por fotos reais do salão/clientes assim que possível -->
+        <!-- Fotos hospedadas no próprio repositório (assets/img/) — carregam sempre, sem depender de link externo.
+             SUBSTITUIR: pelas fotos reais do salão/clientes assim que possível -->
         <div class="hero-media" id="heroMedia" aria-hidden="true">
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
-            <div class="hero-media__slide" style="background-image:url('https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+            <div class="hero-media__slide" style="background-image:url('assets/img/team-curls.jpg')"></div>
+            <div class="hero-media__slide" style="background-image:url('assets/img/salon-interior-1.jpg')"></div>
+            <div class="hero-media__slide" style="background-image:url('assets/img/salon-interior-2.jpg')"></div>
             <div class="hero-media__tint"></div>
         </div>
         <div class="hero-scrim"></div>
@@ -1002,11 +1001,9 @@
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/11808293/pexels-photo-11808293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/4668513/pexels-photo-4668513.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e hidratados (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
@@ -1016,11 +1013,9 @@
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos definidos e vibrantes (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
@@ -1030,18 +1025,16 @@
                 <div class="compare reveal-compare" data-compare>
                     <div class="compare-media compare-media--before">
                         <div class="media-placeholder" style="--ph-a:#4a4a4a;--ph-b:#2b2b2b;--ph-c:#1a1a1a;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-before"></use></svg></div>
-                        <img class="photo-media photo-media--before" src="https://images.pexels.com/photos/14179888/pexels-photo-14179888.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cabelo sem cuidado específico para cachos (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-media compare-media--after">
                         <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#ff1a8c;"><svg class="icon" style="width:3.25rem;height:3.25rem;"><use href="#icon-curls-after"></use></svg></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cachos estilizados em atendimento (foto ilustrativa)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
                     <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
             </div>
-            <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Fotos ilustrativas de banco de imagens gratuito, usadas temporariamente neste MVP.</p>
+            <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Ilustração temporária neste MVP — entra no lugar assim que tivermos fotos reais de antes/depois autorizadas pelas clientes.</p>
         </div>
     </section>
 
@@ -1056,7 +1049,7 @@
                 <div class="team-member reveal">
                     <div class="team-image">
                         <div class="media-placeholder" style="--ph-a:#ff1a8c;--ph-b:#ff6b35;--ph-c:#ffd23f;"><span class="media-placeholder__initial">G</span></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/32082811/pexels-photo-32082811.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy" onerror="this.style.display='none'">
+                        <img class="photo-media" src="assets/img/team-curls.jpg" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Gab)" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="team-name">Gab</div>
                     <div class="team-role">Fundadora &amp; Especialista</div>
@@ -1066,7 +1059,7 @@
                 <div class="team-member reveal">
                     <div class="team-image">
                         <div class="media-placeholder" style="--ph-a:#8b2cff;--ph-b:#ff1a8c;--ph-c:#ff6b35;"><span class="media-placeholder__initial">L</span></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/20327630/pexels-photo-20327630.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Leila)" loading="lazy" onerror="this.style.display='none'">
+                        <!-- SUBSTITUIR: por <img src="assets/img/foto-real-leila.jpg" alt="Leila"> quando houver a foto real -->
                     </div>
                     <div class="team-name">Leila</div>
                     <div class="team-role">Cabeleireira Especialista</div>
@@ -1076,7 +1069,7 @@
                 <div class="team-member reveal">
                     <div class="team-image">
                         <div class="media-placeholder" style="--ph-a:#ffd23f;--ph-b:#ff6b35;--ph-c:#8b2cff;"><span class="media-placeholder__initial">J</span></div>
-                        <img class="photo-media" src="https://images.pexels.com/photos/16895780/pexels-photo-16895780.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Foto ilustrativa de banco de imagens (substituir pela foto real da Julia)" loading="lazy" onerror="this.style.display='none'">
+                        <!-- SUBSTITUIR: por <img src="assets/img/foto-real-julia.jpg" alt="Julia"> quando houver a foto real -->
                     </div>
                     <div class="team-name">Julia</div>
                     <div class="team-role">Cabeleireira Especialista</div>
