@@ -540,7 +540,7 @@
 
         .compare-media { position: absolute; inset: 0; }
         .compare-media--after {
-            clip-path: inset(0 0 0 0); /* estado padrão: visível sem JS */
+            clip-path: inset(0 0 0 50%); /* sem JS, mostra a metade direita do depois */
             transition: clip-path .6s cubic-bezier(.16, 1, .3, 1);
         }
         .compare.dragging .compare-media--after { transition: none; }
@@ -554,7 +554,7 @@
         .compare-handle {
             position: absolute;
             top: 0; bottom: 0;
-            left: 0%;
+            left: 50%;
             width: 3px;
             background: rgba(255, 255, 255, .9);
             transform: translateX(-50%);
@@ -1438,7 +1438,7 @@
 
                 function setPosition(percent) {
                     percent = Math.max(0, Math.min(100, percent));
-                    after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+                    after.style.clipPath = `inset(0 0 0 ${percent}%)`;
                     if (handle) handle.style.left = percent + '%';
                 }
 
@@ -1481,7 +1481,7 @@
                             }
                         });
                     }, { threshold: 0.4 });
-                    setPosition(0);
+                    setPosition(50);
                     revealObserver.observe(compare);
                 } else {
                     setPosition(50);
