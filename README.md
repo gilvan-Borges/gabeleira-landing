@@ -4,7 +4,7 @@ Landing page cinematográfica e otimizada para conversão do salão especializad
 
 ## 📱 Visitar a Página
 
-🌐 **[Acesse a landing page ao vivo](https://gilvan-Borges.github.io/minha-api/)**
+🌐 **[Acesse a landing page ao vivo](https://gilvan-Borges.github.io/gabeleira-landing/)**
 
 ---
 
@@ -152,7 +152,7 @@ Recomendação: criar uma imagem 1200x630px com o logo e cor da marca.
 
 A página já está publicada automaticamente no **GitHub Pages**:
 
-🌐 **https://gilvan-Borges.github.io/minha-api/**
+🌐 **https://gilvan-Borges.github.io/gabeleira-landing/**
 
 **Se fizer alterações:**
 
