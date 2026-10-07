@@ -28,8 +28,10 @@
     <meta property="og:description" content="Salão especializado em cabelos cacheados e crespos. Cortes, tratamentos e mechas com respeito à curvatura natural.">
     <meta property="og:type" content="business.business">
     <meta property="og:url" content="https://gilvan-borges.github.io/minha-api/">
-    <!-- SUBSTITUIR: og:image por uma imagem real 1200x630 (foto do salão/logo) -->
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/ff6b35/ffffff?text=Gabeleira">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image" content="https://gilvan-borges.github.io/minha-api/assets/img/team-curls.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://gilvan-borges.github.io/minha-api/assets/img/team-curls.jpg">
 
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json">
@@ -108,6 +110,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 72px;
             background: var(--color-dark);
         }
 
@@ -851,8 +854,120 @@
         .fixed-cta-content { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .fixed-cta-btn { width: 100%; padding: .9rem 1.5rem; font-size: .9rem; }
 
+        /* ===== FOCO VISÍVEL + SKIP LINK (teclado) ===== */
+        :focus-visible { outline: 3px solid var(--color-gold); outline-offset: 3px; border-radius: 4px; }
+        .btn:focus-visible { border-radius: 999px; }
+        .skip-link {
+            position: fixed; top: -100px; left: 1rem; z-index: 300;
+            background: var(--color-gold); color: #0a0a0a; font-weight: 700;
+            padding: .75rem 1.25rem; border-radius: .5rem; text-decoration: none;
+            transition: top var(--transition-fast);
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* ===== HEADER FIXO COM NAVEGAÇÃO ===== */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+            transition: background var(--transition-fast), box-shadow var(--transition-fast), backdrop-filter var(--transition-fast);
+        }
+        .site-header.is-solid {
+            background: rgba(3, 3, 3, .82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .08);
+        }
+        .site-header__inner {
+            max-width: 1200px; margin: 0 auto; padding: .75rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+        }
+        .brand {
+            font-family: var(--font-display); font-size: 1.5rem; letter-spacing: .04em; text-transform: uppercase;
+            text-decoration: none; background: var(--gradient-hero); background-size: 220% 220%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .site-nav { display: flex; gap: 1.75rem; margin-left: auto; }
+        .site-nav a {
+            color: var(--color-text); text-decoration: none; font-size: .9rem; font-weight: 600;
+            padding: .4rem 0; position: relative; opacity: .85; transition: opacity var(--transition-fast);
+        }
+        .site-nav a::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+            background: var(--gradient-hero); transform: scaleX(0); transform-origin: left;
+            transition: transform var(--transition-fast);
+        }
+        .site-nav a:hover, .site-nav a.is-active { opacity: 1; }
+        .site-nav a:hover::after, .site-nav a.is-active::after { transform: scaleX(1); }
+        .site-header .btn-sm { padding: .65rem 1.25rem; min-height: 44px; font-size: .8rem; width: auto; }
+        .scroll-progress {
+            position: absolute; left: 0; bottom: 0; height: 3px; width: 100%;
+            background: var(--gradient-hero); transform: scaleX(0); transform-origin: left;
+        }
+
+        /* ===== STATUS ABERTO/FECHADO ===== */
+        .status-chip {
+            display: inline-flex; align-items: center; gap: .55rem;
+            padding: .55rem 1rem; border-radius: 999px; font-size: .85rem; font-weight: 600;
+            background: rgba(3, 3, 3, .72); border: 1px solid rgba(255, 255, 255, .18);
+            backdrop-filter: blur(8px); color: var(--color-text);
+        }
+        .status-chip[hidden] { display: none; }
+        .status-dot { width: .6rem; height: .6rem; border-radius: 50%; background: #9a9a9a; flex-shrink: 0; }
+        .status-chip.is-open .status-dot { background: #25d366; box-shadow: 0 0 0 0 rgba(37, 211, 102, .6); animation: statusPulse 2s infinite; }
+        .status-chip.is-closed .status-dot { background: var(--color-accent); }
+        @keyframes statusPulse {
+            70% { box-shadow: 0 0 0 .6rem rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .hero-proof { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; align-items: center; }
+        .hero-microcopy { font-size: .85rem; margin: -1rem 0 1.75rem; opacity: .85; }
+
+        /* ===== FAIXA DE PROVA SOCIAL ===== */
+        .trust-bar { position: relative; z-index: 3; background: var(--color-dark); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+        .trust-bar__grid {
+            max-width: 1200px; margin: 0 auto; padding: 1.75rem 1.5rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center;
+        }
+        .trust-item strong {
+            display: block; font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.1;
+            background: var(--gradient-hero); background-size: 220% 220%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .trust-item span { font-size: .85rem; color: var(--color-text-secondary); }
+
+        /* ===== SLIDER ANTES/DEPOIS: dica + foco ===== */
+        .compare-hint {
+            position: absolute; left: 50%; bottom: 1rem; transform: translateX(-50%); z-index: 4;
+            background: rgba(0, 0, 0, .6); backdrop-filter: blur(4px); padding: .4rem .9rem; border-radius: 999px;
+            font-size: .75rem; letter-spacing: .04em; pointer-events: none; transition: opacity var(--transition-fast);
+        }
+        .compare.touched .compare-hint { opacity: 0; }
+        .compare-handle__grip:focus-visible { outline-offset: 4px; }
+
+        /* ===== DEPOIMENTOS: troca suave + indicadores ===== */
+        .testimonial-card.is-entering { animation: testimonialIn .55s cubic-bezier(.16, 1, .3, 1); }
+        @keyframes testimonialIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .carousel-dots { display: flex; align-items: center; gap: .25rem; }
+        .carousel-dot {
+            width: 24px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .carousel-dot::before {
+            content: ''; width: 9px; height: 9px; border-radius: 50%;
+            background: rgba(255, 255, 255, .3); transition: var(--transition-fast);
+        }
+        .carousel-dot[aria-current="true"]::before { background: var(--color-accent); width: 22px; border-radius: 6px; }
+        .carousel-controls { align-items: center; }
+
+        /* ===== FAQ: resposta escondida do teclado quando fechada ===== */
+        .faq-item:not(.active) .faq-answer { visibility: hidden; }
+        .faq-item.active .faq-answer { visibility: visible; }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            .site-nav { display: none; }
+            .site-header__inner { padding: .6rem 1rem; }
+            .trust-bar__grid { grid-template-columns: repeat(2, 1fr); padding: 1.5rem 1rem; }
+            .hero { padding-top: 5rem; }
             .location-grid { grid-template-columns: 1fr; }
             .hero-cta-group { flex-direction: column; }
             .btn { width: 100%; }
@@ -916,6 +1031,26 @@
         </symbol>
     </svg>
 
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner">
+            <a href="#hero" class="brand" aria-label="Gabeleira – voltar ao início">Gabeleira</a>
+            <nav class="site-nav" aria-label="Principal">
+                <a href="#services">Serviços</a>
+                <a href="#resultados">Resultados</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <a href="https://wa.me/5521969715514?text=Oi%20Gab!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio" class="btn btn-primary btn-sm" data-cta="header"><svg class="icon"><use href="#icon-chat"></use></svg> Agendar</a>
+        </div>
+        <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    </header>
+
+    <main id="main">
+
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <!-- A primeira foto é priorizada; as demais entram após o carregamento inicial. -->
@@ -940,9 +1075,14 @@
                 <a href="#services" class="btn btn-secondary">Ver Serviços</a>
             </div>
 
-            <div class="rating-badge">
-                <span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span>
-                <span>5.0 no Google · 163 avaliações</span>
+            <p class="hero-microcopy">Resposta rápida no WhatsApp · Sem compromisso</p>
+
+            <div class="hero-proof">
+                <div class="rating-badge">
+                    <span class="icon-star-row" aria-hidden="true"><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg><svg class="icon"><use href="#icon-star"></use></svg></span>
+                    <span>5.0 no Google · 163 avaliações</span>
+                </div>
+                <div class="status-chip" data-open-status hidden><span class="status-dot" aria-hidden="true"></span><span class="status-text"></span></div>
             </div>
         </div>
 
@@ -951,6 +1091,16 @@
             <span class="scroll-cue__line"></span>
         </div>
     </section>
+
+    <!-- ===== PROVA SOCIAL ===== -->
+    <div class="trust-bar">
+        <div class="trust-bar__grid">
+            <div class="trust-item"><strong>5.0 ★</strong><span>nota no Google</span></div>
+            <div class="trust-item"><strong>163</strong><span>avaliações de clientes</span></div>
+            <div class="trust-item"><strong>3</strong><span>especialistas em cachos</span></div>
+            <div class="trust-item"><strong>Ter–Sáb</strong><span>9h às 17h30</span></div>
+        </div>
+    </div>
 
     <!-- ===== DOR E SOLUÇÃO ===== -->
     <section class="section pain-section">
@@ -1015,7 +1165,7 @@
     </section>
 
     <!-- ===== GALERIA ANTES/DEPOIS ===== -->
-    <section class="section gallery-section">
+    <section class="section gallery-section" id="resultados">
         <div class="container">
             <span class="eyebrow">Resultados</span>
             <h2 data-split="words">Transformações</h2>
@@ -1033,7 +1183,8 @@
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
-                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
+                    <div class="compare-hint" aria-hidden="true">Arraste para comparar</div>
+                    <div class="compare-handle"><span class="compare-handle__grip" role="slider" tabindex="0" aria-label="Comparar antes e depois" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
 
                 <div class="compare reveal-compare" data-compare>
@@ -1047,7 +1198,8 @@
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
-                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
+                    <div class="compare-hint" aria-hidden="true">Arraste para comparar</div>
+                    <div class="compare-handle"><span class="compare-handle__grip" role="slider" tabindex="0" aria-label="Comparar antes e depois" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
 
                 <div class="compare reveal-compare" data-compare>
@@ -1061,7 +1213,8 @@
                     </div>
                     <div class="compare-label compare-label--before">Antes</div>
                     <div class="compare-label compare-label--after">Depois</div>
-                    <div class="compare-handle"><span class="compare-handle__grip"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
+                    <div class="compare-hint" aria-hidden="true">Arraste para comparar</div>
+                    <div class="compare-handle"><span class="compare-handle__grip" role="slider" tabindex="0" aria-label="Comparar antes e depois" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg class="icon"><use href="#icon-chevron-left"></use></svg><svg class="icon"><use href="#icon-chevron-right"></use></svg></span></div>
                 </div>
             </div>
             <p style="max-width:520px; font-size:.8rem; opacity:.7;">*Publique fotos de clientes somente com autorização de uso de imagem.</p>
@@ -1069,7 +1222,7 @@
     </section>
 
     <!-- ===== EQUIPE ===== -->
-    <section class="section team-section">
+    <section class="section team-section" id="equipe">
         <div class="container">
             <span class="eyebrow">Quem cuida de você</span>
             <h2 data-split="words">Conheça Nossa Equipe</h2>
@@ -1110,7 +1263,7 @@
     </section>
 
     <!-- ===== DEPOIMENTOS ===== -->
-    <section class="section testimonials-section">
+    <section class="section testimonials-section" id="depoimentos">
         <div class="container">
             <span class="eyebrow">Quem já veio</span>
             <h2 data-split="words">Histórias de Nossas Clientes</h2>
@@ -1174,6 +1327,7 @@
 
                 <div class="carousel-controls">
                     <button class="carousel-btn" id="prev-testimonial" aria-label="Depoimento anterior"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+                    <div class="carousel-dots" id="testimonial-dots" role="group" aria-label="Escolher depoimento"></div>
                     <button class="carousel-btn" id="next-testimonial" aria-label="Próximo depoimento"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
                 </div>
             </div>
@@ -1269,7 +1423,7 @@
     </section>
 
     <!-- ===== LOCALIZAÇÃO ===== -->
-    <section class="section location-section">
+    <section class="section location-section" id="contato">
         <div class="container">
             <span class="eyebrow">Onde estamos</span>
             <h2 data-split="words">Onde Nos Encontrar</h2>
@@ -1298,7 +1452,8 @@
                     </div>
 
                     <div class="business-hours">
-                        <div class="info-label" style="margin-bottom: 1rem;"><svg class="icon"><use href="#icon-clock"></use></svg> Horário de Funcionamento</div>
+                        <div class="info-label" style="margin-bottom: .75rem;"><svg class="icon"><use href="#icon-clock"></use></svg> Horário de Funcionamento</div>
+                        <div class="status-chip" data-open-status hidden style="margin-bottom: .75rem;"><span class="status-dot" aria-hidden="true"></span><span class="status-text"></span></div>
                         <div class="hours-item"><span>Terça a Sábado</span><strong>9h às 17h30</strong></div>
                         <div class="hours-item"><span>Domingo</span><strong style="color: var(--color-accent-light);">Fechado</strong></div>
                         <div class="hours-item"><span>Segunda</span><strong style="color: var(--color-accent-light);">Fechado</strong></div>
@@ -1319,6 +1474,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-content">
@@ -1335,7 +1492,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>Gabeleira © 2024 — Especialista em Cachos em Santa Cruz, RJ<br>Desenvolvido com carinho para celebrar a beleza natural</p>
+                <p>Gabeleira © <span id="year">2025</span> —Especialista em Cachos em Santa Cruz, RJ<br>Desenvolvido com carinho para celebrar a beleza natural</p>
             </div>
         </div>
     </footer>
@@ -1380,44 +1537,157 @@
             // ===== FIXED CTA VISIBILITY =====
             const fixedCta = document.getElementById('fixed-cta');
             const heroSection = document.querySelector('.hero');
-            window.addEventListener('scroll', () => {
+            const siteHeader = document.getElementById('siteHeader');
+            const scrollProgress = document.getElementById('scrollProgress');
+            let scrollTicking = false;
+            function onScroll() {
+                scrollTicking = false;
                 const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
                 const scrollPosition = window.scrollY + window.innerHeight;
-                if (scrollPosition > heroBottom && window.innerWidth <= 768) {
-                    fixedCta.classList.add('visible');
+                fixedCta.classList.toggle('visible', scrollPosition > heroBottom && window.innerWidth <= 768);
+                siteHeader.classList.toggle('is-solid', window.scrollY > 40);
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                scrollProgress.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+            }
+            window.addEventListener('scroll', () => {
+                if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScroll); }
+            }, { passive: true });
+            onScroll();
+
+            // ===== NAV: link ativo conforme a seção visível + rolagem suave nas âncoras =====
+            const navLinks = [...document.querySelectorAll('.site-nav a')];
+            if ('IntersectionObserver' in window) {
+                const navObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id));
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                navLinks.forEach(a => {
+                    const target = document.querySelector(a.getAttribute('href'));
+                    if (target) navObserver.observe(target);
+                });
+            }
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const target = document.querySelector(a.getAttribute('href'));
+                    if (!target) return;
+                    e.preventDefault();
+                    if (window.__lenis) window.__lenis.scrollTo(target, { offset: -64 });
+                    else target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                    if (a.classList.contains('skip-link')) target.setAttribute('tabindex', '-1'), target.focus({ preventScroll: true });
+                });
+            });
+
+            // ===== ABERTO/FECHADO AGORA (horário de Brasília; funciona de ter a sáb, 9h–17h30) =====
+            function updateOpenStatus() {
+                let day, minutes;
+                try {
+                    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+                    const get = type => parts.find(p => p.type === type).value;
+                    day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+                    minutes = (parseInt(get('hour'), 10) % 24) * 60 + parseInt(get('minute'), 10);
+                } catch (err) { return; }
+                const OPEN = 9 * 60, CLOSE = 17 * 60 + 30;
+                const isOpenDay = d => d >= 2 && d <= 6;
+                const names = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+                let open = false, text;
+                if (isOpenDay(day) && minutes >= OPEN && minutes < CLOSE) {
+                    open = true; text = 'Aberto agora · fecha às 17h30';
+                } else if (isOpenDay(day) && minutes < OPEN) {
+                    text = 'Fechado agora · abre hoje às 9h';
                 } else {
-                    fixedCta.classList.remove('visible');
+                    let next = (day + 1) % 7, ahead = 1;
+                    while (!isOpenDay(next)) { next = (next + 1) % 7; ahead++; }
+                    text = 'Fechado agora · abre ' + (ahead === 1 ? 'amanhã' : names[next]) + ' às 9h';
                 }
+                document.querySelectorAll('[data-open-status]').forEach(chip => {
+                    chip.hidden = false;
+                    chip.classList.toggle('is-open', open);
+                    chip.classList.toggle('is-closed', !open);
+                    chip.querySelector('.status-text').textContent = text;
+                });
+            }
+            updateOpenStatus();
+            setInterval(updateOpenStatus, 60000);
+
+            // ===== ANO DO RODAPÉ =====
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ===== MEDIÇÃO: cliques nos botões de WhatsApp viram evento no Google Analytics =====
+            document.addEventListener('click', e => {
+                const link = e.target.closest('a[href*="wa.me"]');
+                if (!link || typeof gtag !== 'function') return;
+                const section = link.closest('section, header, footer, .fixed-cta');
+                gtag('event', 'whatsapp_click', {
+                    link_location: link.dataset.cta || (section && (section.id || section.className.split(' ')[0])) || 'page'
+                });
             });
 
             // ===== CARROSSEL DEPOIMENTOS =====
+            const testimonialCards = [...document.querySelectorAll('.testimonial-card')];
+            const dotsWrap = document.getElementById('testimonial-dots');
+            const carousel = document.querySelector('.testimonials-carousel');
             let currentTestimonial = 0;
-            const totalTestimonials = 5;
+            let testimonialTimer = null;
+            const dots = testimonialCards.map((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Depoimento ${i + 1} de ${testimonialCards.length}`);
+                dot.addEventListener('click', () => { showTestimonial(i); restartTestimonialTimer(); });
+                dotsWrap.appendChild(dot);
+                return dot;
+            });
             function showTestimonial(index) {
-                for (let i = 0; i < totalTestimonials; i++) {
-                    document.getElementById(`testimonial-${i}`).style.display = i === index ? 'flex' : 'none';
-                }
+                currentTestimonial = (index + testimonialCards.length) % testimonialCards.length;
+                testimonialCards.forEach((card, i) => {
+                    const active = i === currentTestimonial;
+                    card.style.display = active ? 'flex' : 'none';
+                    card.classList.toggle('is-entering', active);
+                    dots[i].setAttribute('aria-current', active ? 'true' : 'false');
+                });
             }
-            document.getElementById('next-testimonial').addEventListener('click', () => {
-                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-                showTestimonial(currentTestimonial);
-            });
-            document.getElementById('prev-testimonial').addEventListener('click', () => {
-                currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
-                showTestimonial(currentTestimonial);
-            });
-            setInterval(() => {
-                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-                showTestimonial(currentTestimonial);
-            }, 8000);
+            function stopTestimonialTimer() { clearInterval(testimonialTimer); testimonialTimer = null; }
+            function restartTestimonialTimer() {
+                stopTestimonialTimer();
+                if (!prefersReducedMotion) testimonialTimer = setInterval(() => showTestimonial(currentTestimonial + 1), 8000);
+            }
+            document.getElementById('next-testimonial').addEventListener('click', () => { showTestimonial(currentTestimonial + 1); restartTestimonialTimer(); });
+            document.getElementById('prev-testimonial').addEventListener('click', () => { showTestimonial(currentTestimonial - 1); restartTestimonialTimer(); });
+            // Pausa a rotação enquanto a pessoa lê (mouse em cima ou foco no carrossel)
+            carousel.addEventListener('mouseenter', stopTestimonialTimer);
+            carousel.addEventListener('mouseleave', restartTestimonialTimer);
+            carousel.addEventListener('focusin', stopTestimonialTimer);
+            carousel.addEventListener('focusout', restartTestimonialTimer);
+            // Swipe no celular
+            let touchStartX = null;
+            carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+            carousel.addEventListener('touchend', e => {
+                if (touchStartX === null) return;
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                touchStartX = null;
+                if (Math.abs(dx) > 50) { showTestimonial(currentTestimonial + (dx < 0 ? 1 : -1)); restartTestimonialTimer(); }
+            }, { passive: true });
+            showTestimonial(0);
+            restartTestimonialTimer();
 
-            // ===== FAQ ACCORDION =====
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.querySelector('.faq-question').addEventListener('click', () => {
+            // ===== FAQ ACCORDION (com aria-expanded para leitores de tela) =====
+            document.querySelectorAll('.faq-item').forEach((item, i) => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                answer.id = `faq-answer-${i}`;
+                question.setAttribute('aria-controls', answer.id);
+                question.setAttribute('aria-expanded', 'false');
+                question.addEventListener('click', () => {
                     document.querySelectorAll('.faq-item').forEach(other => {
-                        if (other !== item) other.classList.remove('active');
+                        if (other !== item) {
+                            other.classList.remove('active');
+                            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
                     });
-                    item.classList.toggle('active');
+                    const isOpen = item.classList.toggle('active');
+                    question.setAttribute('aria-expanded', String(isOpen));
                 });
             });
 
@@ -1438,10 +1708,27 @@
                 const grip = compare.querySelector('.compare-handle__grip');
                 let dragging = false;
 
+                let position = 50;
+
                 function setPosition(percent) {
                     percent = Math.max(0, Math.min(100, percent));
+                    position = percent;
                     after.style.clipPath = `inset(0 0 0 ${percent}%)`;
                     if (handle) handle.style.left = percent + '%';
+                    if (grip) grip.setAttribute('aria-valuenow', Math.round(percent));
+                }
+
+                // Teclado: setas movem a alça, Home/End vão às pontas
+                if (grip) {
+                    grip.addEventListener('keydown', e => {
+                        const steps = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 };
+                        if (e.key in steps) setPosition(position + steps[e.key]);
+                        else if (e.key === 'Home') setPosition(0);
+                        else if (e.key === 'End') setPosition(100);
+                        else return;
+                        compare.classList.add('touched');
+                        e.preventDefault();
+                    });
                 }
 
                 function percentFromEvent(e) {
@@ -1452,7 +1739,7 @@
 
                 function start(e) {
                     dragging = true;
-                    compare.classList.add('dragging');
+                    compare.classList.add('dragging', 'touched');
                     setPosition(percentFromEvent(e));
                     e.preventDefault();
                 }
@@ -1499,6 +1786,7 @@
             // ===== Lenis smooth scroll =====
             if (typeof Lenis !== 'undefined') {
                 const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+                window.__lenis = lenis;
                 lenis.on('scroll', ScrollTrigger.update);
                 gsap.ticker.add((time) => lenis.raf(time * 1000));
                 gsap.ticker.lagSmoothing(0);
